@@ -1,0 +1,28 @@
+<?php namespace {{namespace}}\Models;
+
+use Illuminate\Database\Eloquent\SoftDeletingTrait;
+use Laracasts\Presenter\PresentableTrait; // https://github.com/laracasts/Presenter
+
+class {{Modulename}} extends \Eloquent {
+
+	protected   $table =        '{{modulename}}';
+	protected   $primaryKey =   'id';
+	public      $timestamps =   true;
+
+	protected   $fillable =     [];
+    protected   $guarded =      [];
+    protected   $hidden =       [];
+
+	use         SoftDeletingTrait;
+	protected   $dates =        ['deleted_at'];
+
+	use         PresentableTrait;
+	protected   $presenter =    '{{namespace}}\Presenters\{{Modulename}}Presenter';
+
+	public static function boot()
+	{
+		parent::boot();
+		// Setup event bindings...
+	}
+
+};

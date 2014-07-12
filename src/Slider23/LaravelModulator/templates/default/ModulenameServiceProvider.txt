@@ -1,0 +1,56 @@
+<?php namespace {{namespace}};
+
+use Illuminate\Support\ServiceProvider;
+
+class {{Modulename}}ServiceProvider extends ServiceProvider {
+
+	/**
+	 * Indicates if loading of the provider is deferred.
+	 *
+	 * @var bool
+	 */
+	protected $defer = false;
+
+	/**
+	 * Register the service provider.
+	 *
+	 * @return void
+	 */
+	public function register()
+	{
+
+	}
+
+	/**
+	 * Boot the service provider.
+	 *
+	 * @return void
+	 */
+	public function boot()
+	{
+		// Register module as package for using View::make("{{modulename}}::file")
+		$this->package('', '{{modulename}}', __DIR__);
+
+		// Register Artisan command (if needed)
+		$this->commands('{{namespace}}\Commands\{{Modulename}}Command');
+
+		// Including module-related routes etc
+		include '{{modulename}}_routes.php';
+		include '{{modulename}}_helpers.php';
+		include '{{modulename}}_events.php';
+		include '{{modulename}}_filters.php';
+
+		// ...
+	}
+
+	/**
+	 * Get the services provided by the provider.
+	 *
+	 * @return array
+	 */
+	public function provides()
+	{
+		return array();
+	}
+
+}
