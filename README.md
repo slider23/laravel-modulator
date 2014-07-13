@@ -17,7 +17,7 @@ Run Artisan command:
 
 	php artisan modulator --path=app/Acme User
 	
-where `Acme` - namespace of your application and `User` - name of module.
+where `Acme` - namespace of your application (must be in `autoload` section of `composer.json`) and `User` - name of module.
 
 In folder `app/Acme` will be created:
 
