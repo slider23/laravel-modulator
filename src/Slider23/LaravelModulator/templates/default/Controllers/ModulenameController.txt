@@ -14,7 +14,7 @@ class {{Modulename}}Controller extends \BaseController {
 
 	public function getExample()
 	{
-		return \View::make("{{modulename}}/example");
+		return \View::make("{{modulename}}::{{modulename}}/example");
 	}
 
 	public function postExample()

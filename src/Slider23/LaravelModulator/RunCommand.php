@@ -6,6 +6,7 @@ use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Finder\Finder;
 
 class RunCommand extends Command {
 
@@ -55,10 +56,6 @@ class RunCommand extends Command {
 			if(!$module_name) $module_name = $this->ask("Module name (for example Somemodule): ");
 		}
 
-		// debug
-		//if(! $module_folder_path) $module_folder_path = "app/MS";
-		//if(! $module_name) $module_name = "User";
-
 		$module_name_lower = strtolower($module_name);
 		$module_name_capitalized = ucwords($module_name);
 
@@ -79,7 +76,20 @@ class RunCommand extends Command {
 
 		$this->filesystem->copyDirectory($templates_path, $destination_path);
 		if($is_debug) $this->info("directory copied.");
-		//return;
+
+		$directories = array();
+		foreach (Finder::create()->in($destination_path)->directories()->depth(" < 100") as $dir)
+		{
+			$directories[] = $dir->getPathname();
+		}
+		foreach($directories as $directory_name){
+			$new_directory_name = str_replace("modulename", $module_name_lower, $directory_name);
+			if($new_directory_name != $directory_name){
+				$this->filesystem->copyDirectory($directory_name, $new_directory_name);
+				$this->filesystem->deleteDirectory($directory_name);
+				if($is_debug) $this->info("directory rename $directory_name -> $new_directory_name");
+			}
+		}
 
 		foreach($this->filesystem->allFiles($destination_path) as $filename){
 
