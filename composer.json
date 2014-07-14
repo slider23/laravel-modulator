@@ -18,7 +18,7 @@
     },
 	"suggest":{
 		"laracasts/presenter": "Custom presenters for Eloquent models",
-		"laravasts/validation": "Validation of forms instead validation of models"
+		"laracasts/validation": "Validation of forms instead validation of models"
 	},
     "minimum-stability": "stable"
 }
