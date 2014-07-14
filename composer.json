@@ -1,6 +1,6 @@
 {
     "name": "slider23/laravel-modulator",
-    "description": "",
+    "description": "Artisan-generator for easy creating module in your Laravel namespace-based application.",
     "authors": [
         {
             "name": "slider23",

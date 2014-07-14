@@ -28,8 +28,13 @@ class {{Modulename}}ServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		// Register module as package for using View::make("{{modulename}}::file")
+		// Register module as package for using "{{modulename}}::foo" for config etc.
 		$this->package('', '{{modulename}}', __DIR__);
+
+		// Add folder Views in global views path. Use subfolder '{{modulename}}' for place module views.
+        $viewPaths = \Config::get('view.paths');
+        $viewPaths[] = __DIR__ . '/Views';
+        \Config::set('view.paths', $viewPaths);
 
 		// Register Artisan command (if needed)
 		$this->commands('{{namespace}}\Commands\{{Modulename}}Command');
