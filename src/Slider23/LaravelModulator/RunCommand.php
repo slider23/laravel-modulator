@@ -51,8 +51,8 @@ class RunCommand extends Command {
 		$is_debug = $this->option("debug");
 
 		if(!$module_name OR !$module_folder_path){
-			$this->info("Creating new module for your laravel application (/app/NamespaceRoot/[Somefolder/]Somemodule).");
-			if(!$module_folder_path) $module_folder_path = $this->ask('Path to your module folder (for example /app/NamespaceRoot/Somefolder , all folders must be exist): ');
+			$this->info("Creating new module for your laravel application (app/NamespaceRoot/[Somefolder/]Somemodule).");
+			if(!$module_folder_path) $module_folder_path = $this->ask('Path to your module folder (for example app/NamespaceRoot/Somefolder , all folders must be exist): ');
 			if(!$module_name) $module_name = $this->ask("Module name (for example Somemodule): ");
 		}
 

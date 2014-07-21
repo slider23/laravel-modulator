@@ -18,16 +18,6 @@ class {{Modulename}}ServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-
-	}
-
-	/**
-	 * Boot the service provider.
-	 *
-	 * @return void
-	 */
-	public function boot()
-	{
 		// Register module as package for using "{{modulename}}::foo" for config etc.
 		$this->package('', '{{modulename}}', __DIR__);
 
@@ -40,12 +30,22 @@ class {{Modulename}}ServiceProvider extends ServiceProvider {
 		$this->commands('{{namespace}}\Commands\{{Modulename}}Command');
 
 		// Including module-related routes etc
-		include '{{modulename}}_routes.php';
-		include '{{modulename}}_helpers.php';
-		include '{{modulename}}_events.php';
-		include '{{modulename}}_filters.php';
+		include __DIR__.DIRECTORY_SEPARATOR.'{{modulename}}_routes.php';
+		include __DIR__.DIRECTORY_SEPARATOR.'{{modulename}}_helpers.php';
+		include __DIR__.DIRECTORY_SEPARATOR.'{{modulename}}_events.php';
+		include __DIR__.DIRECTORY_SEPARATOR.'{{modulename}}_filters.php';
 
 		// ...
+	}
+
+	/**
+	 * Boot the service provider.
+	 *
+	 * @return void
+	 */
+	public function boot()
+	{
+		
 	}
 
 	/**
