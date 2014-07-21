@@ -19,7 +19,7 @@ class {{Modulename}}ServiceProvider extends ServiceProvider {
 	public function register()
 	{
 		// Register module as package for using "{{modulename}}::foo" for config etc.
-		$this->package('', '{{modulename}}', __DIR__);
+		//$this->package('', '{{modulename}}', __DIR__);
 
 		// Add folder Views in global views path. Use subfolder '{{modulename}}' for place module views.
         $viewPaths = \Config::get('view.paths');
