@@ -58,7 +58,7 @@ class RunCommand extends Command {
 
 		$module_name_lower = strtolower($module_name);
 		$module_name_capitalized = ucwords($module_name);
-		$module_name_pluralized = str_plural(module_name_lower);
+		$module_name_pluralized = str_plural($module_name_lower);
 
 		$module_folder_path = str_replace(array('/','\\'), DIRECTORY_SEPARATOR, $module_folder_path);
 		if($is_debug) $this->info("module_folder_path = $module_folder_path");
