@@ -5,7 +5,7 @@ use Laracasts\Presenter\PresentableTrait; // https://github.com/laracasts/Presen
 
 class {{Modulename}} extends \Eloquent {
 
-	protected   $table =        '{{modulename}}';
+	protected   $table =        '{{modulenames}}';
 	protected   $primaryKey =   'id';
 	public      $timestamps =   true;
 

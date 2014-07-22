@@ -58,6 +58,7 @@ class RunCommand extends Command {
 
 		$module_name_lower = strtolower($module_name);
 		$module_name_capitalized = ucwords($module_name);
+		$module_name_pluralized = str_plural(module_name_lower);
 
 		$module_folder_path = str_replace(array('/','\\'), DIRECTORY_SEPARATOR, $module_folder_path);
 		if($is_debug) $this->info("module_folder_path = $module_folder_path");
@@ -97,12 +98,14 @@ class RunCommand extends Command {
 			if($is_debug) $this->info("get $filename");
 			$content = str_replace("{{Modulename}}", $module_name_capitalized, $content);
 			$content = str_replace("{{modulename}}", $module_name_lower, $content);
+			$content = str_replace("{{modulenames}}", $module_name_pluralized, $content);
 			$content = str_replace("{{namespace}}", $module_base_namespace, $content);
 			$this->filesystem->put($filename, $content);
 			if($is_debug) $this->info("put new content to $filename");
 
 			$new_filename = str_replace(".txt", ".php", $filename);
 			$new_filename = str_replace("modulename", $module_name_lower, $new_filename);
+			$new_filename = str_replace("modulenames", $module_name_pluralized, $new_filename);
 			$new_filename = str_replace("Modulename", $module_name_capitalized, $new_filename);
 			rename($filename, $new_filename);
 			if($is_debug) { $this->info("rename to $new_filename"); $this->info("--"); }
