@@ -21,7 +21,7 @@ where `Acme` - namespace of your application (must be in `autoload` section of `
 
 In folder `app/Acme` will be created:
 
-![Module structure](https://monosnap.com/image/CvN2JQG9cWkvr5FcWwI7lpocYL0vZS.png)
+![Module structure](https://monosnap.com/image/wTflxvS5IZZdxPTc7DQg7LAvjzY158.png)
 
 Add `Acme\User\UserServiceProvider` to the providers array in `app/config/app.php`. Module is ready to work ! 
 
