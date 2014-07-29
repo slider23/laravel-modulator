@@ -1,7 +1,7 @@
 # laravel-modulator
 Artisan generator for easy creating module in your Laravel namespace-based application.
 
-<img src="http://img.shields.io/packagist/v/slider23/laravel-modulator.svg?style=flat" />
+<a href="https://packagist.org/packages/slider23/laravel-modulator"><img src="http://img.shields.io/packagist/v/slider23/laravel-modulator.svg?style=flat" /></a>
 
 ## Installation
 
