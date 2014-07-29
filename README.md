@@ -1,6 +1,8 @@
 # laravel-modulator
 Artisan generator for easy creating module in your Laravel namespace-based application.
 
+<img src="http://img.shields.io/packagist/v/slider23/laravel-modulator.svg?style=flat" />
+
 ## Installation
 
 Require this package in your composer.json and run composer update (or run `composer require slider23/laravel-modulator:1.*` directly):
