@@ -1,0 +1,11 @@
+<?php namespace {{namespace}}\Facades;
+
+use Illuminate\Support\Facades\Facade;
+
+class {{Modulename}} extends Facade{
+
+    protected static function getFacadeAccessor()
+    {
+        return "{{modulename}}facade";
+    }
+}

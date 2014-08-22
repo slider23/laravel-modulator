@@ -7,6 +7,8 @@ use RecursiveIteratorIterator;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Finder\Finder;
+use Config;
+use Exception;
 
 class RunCommand extends Command {
 
@@ -48,12 +50,15 @@ class RunCommand extends Command {
 	{
 		$module_name = $this->argument("modulename");
 		$module_folder_path = $this->option("path");
+		$template_name = $this->option("template");
+		if( ! $template_name) $template_name = "default";
 		$is_debug = $this->option("debug");
 
 		if(!$module_name OR !$module_folder_path){
 			$this->info("Creating new module for your laravel application (app/NamespaceRoot/[Somefolder/]Somemodule).");
 			if(!$module_folder_path) $module_folder_path = $this->ask('Path to your module folder (for example app/NamespaceRoot/Somefolder , all folders must be exist): ');
 			if(!$module_name) $module_name = $this->ask("Module name (for example Somemodule): ");
+			if(!$template_name) $template_name = $this->ask("Module template [default]: ");
 		}
 
 		$module_name_lower = strtolower($module_name);
@@ -68,8 +73,16 @@ class RunCommand extends Command {
 		if($is_debug) $this->info("module_base_namespace = $module_base_namespace");
 
 
-		//$templates_path = __DIR__.DIRECTORY_SEPARATOR."template".DIRECTORY_SEPARATOR;
-		$templates_path = str_replace(array('/','\\'), DIRECTORY_SEPARATOR, $this->laravel['path.base'].DIRECTORY_SEPARATOR.\Config::get("laravel-modulator::config.templates_path"));
+		$config_template_path = Config::get("laravel-modulator::config.templates_path");
+		if(is_array($config_template_path)){
+			if( ! isset($config_template_path[$template_name])){
+				throw new Exception("Path to template $template_name not found. Check laravel-modulator`s config.php.");
+			}
+			$templates_path = $config_template_path[$template_name];
+		}else{
+			$templates_path = $config_template_path;
+		}
+		$templates_path = str_replace(array('/','\\'), DIRECTORY_SEPARATOR, $this->laravel['path.base'].DIRECTORY_SEPARATOR.$templates_path);
 		if($is_debug) $this->info("templates_path = $templates_path");
 
 		$destination_path = $this->laravel['path.base'].DIRECTORY_SEPARATOR.$module_folder_path.DIRECTORY_SEPARATOR.$module_name.DIRECTORY_SEPARATOR;
@@ -147,6 +160,7 @@ class RunCommand extends Command {
 	{
 		return array(
 			array('path', null, InputOption::VALUE_OPTIONAL, 'Path to module folder (\'app/Acme\' for example).', null),
+			array('template', null, InputOption::VALUE_OPTIONAL, "Module template folder (see config.php).", null),
 			array('debug', 0, InputOption::VALUE_OPTIONAL, 'Debug output.', null),
 		);
 	}

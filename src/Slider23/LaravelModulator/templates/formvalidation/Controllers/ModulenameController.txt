@@ -1,0 +1,33 @@
+<?php namespace {{namespace}}\Controllers;
+
+use {{namespace}}\Forms\{{Modulename}}Form;
+use Laracasts\Validation\FormValidationException;
+
+class {{Modulename}}Controller extends \BaseController {
+
+	private ${{modulename}}Form;
+
+	public function __construct({{Modulename}}Form ${{modulename}}Form)
+	{
+		$this->{{modulename}}Form = ${{modulename}}Form;
+	}
+
+	public function getExample()
+	{
+		return \View::make("{{modulename}}/example");
+	}
+
+	public function postExample()
+	{
+		$input = \Input::only('field1', 'field2');
+		try{
+			$this->{{modulename}}Form->valdate($input);
+		}
+		catch (FormValidationException $e)
+        {
+            return \Redirect::back()->withInput()->withErrors($e->getErrors());
+        }
+
+		return \Redirect::back()->withSuccess(true);
+	}
+}

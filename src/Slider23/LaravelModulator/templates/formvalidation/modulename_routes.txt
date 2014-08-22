@@ -10,5 +10,5 @@ $namespace = '{{namespace}}\Controllers';
 */
 
 Route::get( '{{modulename}}/example',   ['uses'=>$namespace.'\{{Modulename}}Controller@getExample',      'as'=>'{{modulename}}.example']);
-
+Route::post('{{modulename}}/example',   ['uses'=>$namespace.'\{{Modulename}}Controller@postExample',     'as'=>'{{modulename}}.example.save']);
 

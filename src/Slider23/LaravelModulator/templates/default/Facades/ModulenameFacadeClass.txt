@@ -1,0 +1,15 @@
+<?php namespace {{namespace}}\Facades;
+
+class {{Modulename}}FacadeClass {
+
+	public function __construct()
+	{
+		
+	}
+
+	public function example()
+	{
+		return "This is string from facade class";
+	}
+
+} 

@@ -1,7 +1,6 @@
 <?php namespace {{namespace}};
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Foundation\AliasLoader;
 
 class {{Modulename}}ServiceProvider extends ServiceProvider {
 
@@ -34,14 +33,7 @@ class {{Modulename}}ServiceProvider extends ServiceProvider {
 		include __DIR__.DIRECTORY_SEPARATOR.'{{modulename}}_events.php';
 		include __DIR__.DIRECTORY_SEPARATOR.'{{modulename}}_filters.php';
 
-		// Registering facade
-		$this->app->bind('{{modulename}}facade', function($app){
-	        return new \{{namespace}}\Facades\{{Modulename}}FacadeClass();
-	    });
-	    // Registering alias for facade
-	    $this->app->booting(function(){
-	        AliasLoader::getInstance()->alias('{{Modulename}}', '{{namespace}}\Facades\{{Modulename}}');
-	    });
+		// ...
 	}
 
 	/**
